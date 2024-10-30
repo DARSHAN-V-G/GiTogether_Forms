@@ -1,4 +1,3 @@
-// src/RegistrationForm.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
 
@@ -27,7 +26,6 @@ const RegistrationForm = () => {
       const response = await axios.post('event/register', formData);
       setMessage('Registration successful!');
       console.log(response.data);
-      // Reset form after submission
       setFormData({
         name: '',
         roll_no: '',
@@ -37,7 +35,7 @@ const RegistrationForm = () => {
       });
     } catch (error) {
       setMessage('Registration failed. Please try again.');
-      console.error('Error:', error.message);
+      console.error('Error during registration : ', error.message);
     }
   };
 
