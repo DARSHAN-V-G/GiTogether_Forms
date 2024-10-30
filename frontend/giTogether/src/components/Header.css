@@ -12,11 +12,11 @@
   );
   color: white;
   height: 5rem;
-  border-bottom: 2px solid rgb(224, 35, 130);
+  border-bottom: 0.5px solid rgb(224, 35, 130);
 }
 
 .psglogo{
-  height: 70px;
+  height: 60px;
   margin-left: 20px;
   margin-top: 10px;
 }
@@ -29,7 +29,7 @@
 
 @media (max-width: 576px) {
   .psglogo{
-    height:60px ;
+    height:50px ;
   }
 
   .githublogo{

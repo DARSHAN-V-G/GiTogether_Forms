@@ -1,22 +1,36 @@
 import './About.css';
+import { FaGithub, FaUsers, FaBullhorn } from 'react-icons/fa';
 
 const About = () => {
   return (
     <div className="about-container">
-      <h1>About Git Together</h1>
+      <h1 className="abouttxt">About Git Together</h1>
       <div className="glass-card">
-        <h2>Round 1: Github Speed Run (Individual, No Teams, No Elimination)</h2>
-        <p>
-          Participants will race individually to navigate from one GitHub article to another within the shortest time possible. This round encourages quick thinking and resourcefulness, with all participants receiving credit for their efforts. This engaging warm-up round aims to energize participants and introduce them to friendly competition.
-        </p>
-        <h2>Round 2: Box of Lies (Team Formation)</h2>
-        <p>
-          Participants will form teams in this round. Teams will be presented with a selection of unusual items, and one team member will describe an item to another team, who must guess if the description is true or a lie. Depending on the number of participants, this round may or may not include elimination, ensuring a fair chance for everyone to engage.
-        </p>
-        <h2>Round 3: Marketing Silly Things (Teams with More Points Win)</h2>
-        <p>
-          In the final round, each team will be given quirky or unconventional objects and asked to create a marketing pitch. Teams will earn points based on creativity, humor, and presentation style, with the highest-scoring team declared the winner of the event. This round promotes collaboration and innovation, giving participants an opportunity to showcase their skills in a fun, lighthearted way.
-        </p>
+        <h2><FaGithub /> Round 1: Github Speed Run (Individual, No Teams, No Elimination)</h2>
+        <ul>
+          <li>Race individually to navigate between GitHub articles quickly.</li>
+          <li>Encourages quick thinking and resourcefulness.</li>
+          <li>All participants receive credit for their efforts.</li>
+          <li>Engaging warm-up to energize participants and introduce friendly competition.</li>
+        </ul>
+      </div>
+      <div className="glass-card">
+        <h2><FaUsers /> Round 2: Box of Lies (Team Formation)</h2>
+        <ul>
+          <li>Form teams and receive a selection of unusual items.</li>
+          <li>Describe an item to your team, who must guess if it's true or a lie.</li>
+          <li>May include elimination based on participant numbers.</li>
+          <li>Ensures a fair chance for everyone to engage.</li>
+        </ul>
+      </div>
+      <div className="glass-card">
+        <h2><FaBullhorn /> Round 3: Marketing Silly Things (Team with Most Points Wins)</h2>
+        <ul>
+          <li>Create marketing pitches for quirky or unconventional objects.</li>
+          <li>Earn points based on creativity, humor, and presentation style.</li>
+          <li>Highest-scoring team declared the winner.</li>
+          <li>Promotes collaboration and innovation in a fun, lighthearted way.</li>
+        </ul>
       </div>
     </div>
   );
