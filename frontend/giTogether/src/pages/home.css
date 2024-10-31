@@ -16,6 +16,33 @@ body {
   padding: 0;
 }
 
+.home-container {
+  position: relative;
+  height: 100vh;
+}
+
+.particle {
+  position: absolute;
+  bottom: -10px;
+  width: 8px;
+  height: 8px;
+  background-color: #d91656;
+  border-radius: 50%;
+  opacity: 0.7;
+  animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+  from {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  to {
+    transform: translateY(-120vh);
+    opacity: 0;
+  }
+}
+
 .txt {
   font-family: "Red Rose", serif;
   font-optical-sizing: auto;
@@ -34,7 +61,7 @@ body {
   font-style: normal;
   color: white;
   text-align: center;
-  padding-top: 4rem;
+  padding-top:6rem ;
 }
 
 .ttxt {
@@ -74,8 +101,61 @@ body {
   height: 4rem;
   width: 16rem;
   font-size: 1.2rem;
+  box-shadow: 0 0 20px rgba(235, 27, 148, 0.6);
 }
 
+.wobble {
+  animation: wobble 1.5s infinite;
+}
+
+@keyframes wobble {
+  0%,
+  100% {
+    transform: translateX(0%);
+  }
+  15% {
+    transform: translateX(-10%) rotate(-3deg);
+  }
+  30% {
+    transform: translateX(10%) rotate(3deg);
+  }
+  45% {
+    transform: translateX(-10%) rotate(-3deg);
+  }
+  60% {
+    transform: translateX(10%) rotate(2deg);
+  }
+  75% {
+    transform: translateX(-5%) rotate(-1deg);
+  }
+}
+
+.joinbtn {
+  text-decoration: none;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 10px;
+  height: 3.5rem;
+  border: none;
+  border-radius: 20px;
+  width: 15.5rem;
+  font-family: "Red Rose", serif;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 600;
+  background-color: #d91656;
+  margin-bottom: 2rem;
+}
+
+.joinbtn:hover {
+  height: 4rem;
+  width: 16rem;
+  font-size: 1.2rem;
+  box-shadow: 0 0 20px rgba(235, 27, 148, 0.6);
+}
 
 @media (max-width: 576px) {
   .txt {
@@ -103,6 +183,12 @@ body {
   .morebtn:hover{
     height: 3rem;
     width: 13rem;
+    font-size: 0.8rem;
+  }
+
+  .joinbtn{
+    height: 2rem;
+    width: 12rem;
     font-size: 0.8rem;
   }
 }
