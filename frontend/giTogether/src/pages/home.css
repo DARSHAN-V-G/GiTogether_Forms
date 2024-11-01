@@ -191,4 +191,10 @@ body {
     width: 12rem;
     font-size: 0.8rem;
   }
+
+  .joinbtn:hover{
+    height: 2.5rem;
+    width:12.5rem;
+    font-size: 1rem;
+  }
 }
