@@ -1,5 +1,32 @@
+
 import React, { useState } from 'react';
 import axios from 'axios';
+import './RegisterPage.css';
+
+const SuccessMessage = () => (
+  <div className="overlay">
+    <div className="success-message">
+      <p className="txt" style={{fontSize:"1.5rem",marginBottom:"20px"}}>Registration successful!</p>
+      <p className="txt" style={{fontSize:"1.2rem",marginBottom:"20px"}}>Don't forget to join the fun on 14th November!!</p>
+      <a className="txt" style={{fontSize:"1rem",marginBottom:"20px"}} href="https://chat.whatsapp.com/your-group-link" target="_blank" rel="noopener noreferrer">Join our WhatsApp group</a>
+      <a className="closebtn" href="/">Close</a>
+    </div>
+  </div>
+);
+
+const ErrorMessage = ()=>{
+  <div className="overlay">
+    <div className="success-message">
+      <p className="txt" style={{fontSize:"1.5rem",marginBottom:"20px"}}>Error Occured while registration.</p>
+      <p className="txt" style={{fontSize:"1.5rem",marginBottom:"20px"}}>Sorry for the inconvenience</p>
+      <a className="closebtn" href="/register">Try Again</a>
+    </div>
+  </div>
+};
+
+const LoadingSpinner = () => {
+  return <div className="loading-spinner"></div>;
+};
 
 const RegistrationForm = () => {
   const [formData, setFormData] = useState({
@@ -9,8 +36,9 @@ const RegistrationForm = () => {
     email: '',
     phn_no: ''
   });
-
-  const [message, setMessage] = useState('');
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [iserror , setIsError] = useState(false);
+  const [loading,setLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -22,15 +50,15 @@ const RegistrationForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     try {
-      const response = await axios.post('event/register', {
-        ...formData,
-        department : '',
-        email: formData.roll_no.toLowerCase() + '@psgtech.ac.in'
-      });
-      setMessage('Registration successful!');
-      console.log(response.data);
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/event/register`, formData);
+      if (response.status === 201) {
+        setIsSuccess(true);
+      }
+      else{
+        setIsError(true);
+      }
       setFormData({
         name: '',
         roll_no: '',
@@ -39,10 +67,16 @@ const RegistrationForm = () => {
         phn_no: ''
       });
     } catch (error) {
-      setMessage('Registration failed. Please try again.');
+      setIsError(true);
       console.error('Error during registration : ', error.message);
+    }finally{
+      setLoading(false);
     }
   };
+
+  const particles = Array.from({ length: 50 });
+
+  const isFormValid = Object.values(formData).every(value => value.trim() !== '');
 
   return (
     <div style={styles.container}>
@@ -68,6 +102,27 @@ const RegistrationForm = () => {
           required
           style={styles.input}
         />
+
+        <label style={styles.label}>Department:</label>
+        <input
+          type="text"
+          name="department"
+          value={formData.department}
+          onChange={handleChange}
+          required
+          style={styles.input}
+        />
+
+        <label style={styles.label}>Email:</label>
+        <input
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+          style={styles.input}
+        />
+
         <label style={styles.label}>Phone Number:</label>
         <input
           type="tel"
@@ -78,59 +133,12 @@ const RegistrationForm = () => {
           style={styles.input}
         />
 
-        <button type="submit" style={styles.button}>Register</button>
+        <button onClick={handleSubmit} className="submit-btn" disabled={!isFormValid}>{(loading?<LoadingSpinner/>:"Register")}</button>
       </form>
     </div>
+    </div>
+    </>
   );
-};
-
-const styles = {
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: '20px',
-    borderRadius: '8px',
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-    maxWidth: '400px',
-    margin: '0 auto',
-    backgroundColor: '#f9f9f9'
-  },
-  heading: {
-    fontSize: '24px',
-    marginBottom: '10px',
-    color: '#333'
-  },
-  message: {
-    color: 'green',
-    fontSize: '14px',
-    marginBottom: '10px'
-  },
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    width: '100%'
-  },
-  label: {
-    marginBottom: '5px',
-    color: '#555',
-    fontWeight: 'bold'
-  },
-  input: {
-    padding: '8px',
-    marginBottom: '15px',
-    borderRadius: '4px',
-    border: '1px solid #ccc'
-  },
-  button: {
-    padding: '10px',
-    backgroundColor: '#007bff',
-    color: '#fff',
-    border: 'none',
-    borderRadius: '4px',
-    cursor: 'pointer'
-  }
 };
 
 export default RegistrationForm;
