@@ -19,11 +19,16 @@ const RegistrationForm = () => {
     });
   };
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('event/register', formData);
+      const response = await axios.post('event/register', {
+        ...formData,
+        department : '',
+        email: formData.roll_no.toLowerCase() + '@psgtech.ac.in'
+      });
       setMessage('Registration successful!');
       console.log(response.data);
       setFormData({
@@ -63,27 +68,6 @@ const RegistrationForm = () => {
           required
           style={styles.input}
         />
-
-        <label style={styles.label}>Department:</label>
-        <input
-          type="text"
-          name="department"
-          value={formData.department}
-          onChange={handleChange}
-          required
-          style={styles.input}
-        />
-
-        <label style={styles.label}>Email:</label>
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-          style={styles.input}
-        />
-
         <label style={styles.label}>Phone Number:</label>
         <input
           type="tel"
