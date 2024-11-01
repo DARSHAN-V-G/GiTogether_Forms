@@ -1,6 +1,6 @@
 import './Header.css'
-import PSGLogo from '../assets/PSG Logo.png';
-import GithubLogo from '../assets/GithubLogo.png';
+import PSGLogo from '../../assets/PSG Logo.png';
+import GithubLogo from '../../assets/GithubLogo.png';
 
 const Header = ()=>{
   return(

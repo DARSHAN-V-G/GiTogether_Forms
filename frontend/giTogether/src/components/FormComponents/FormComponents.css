@@ -1,0 +1,18 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start; /* Aligns content to the start as specified */
+  width: auto;
+  max-width: 400px;
+  height: 100%; /* Ensures the container takes the full height */
+  padding: 20px;
+  row-gap: 1rem;
+  background: rgba(255, 255, 255, 0);
+  border-radius: 10px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgb(190, 142, 158);
+  position: relative; /* Maintains relative positioning */
+}

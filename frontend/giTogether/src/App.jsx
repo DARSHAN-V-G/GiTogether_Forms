@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import RegistrationForm from './components/RegisterPage';
+import RegistrationForm from './pages/RegisterPage.jsx';
 import './App.css'
 import HomePage from './pages/home.jsx';
-import Database from './pages/Data.jsx';
+import Database from './pages/ViewData.jsx';
 const App = () => {
   return (
     <div>

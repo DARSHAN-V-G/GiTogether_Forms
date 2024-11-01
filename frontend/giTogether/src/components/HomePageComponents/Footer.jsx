@@ -1,6 +1,6 @@
 import './Footer.css';
-import Instagram from '../assets/Instagram.png';
-import Linkedin from '../assets/Linkedin.png';
+import Instagram from '../../assets/Instagram.png';
+import Linkedin from '../../assets/Linkedin.png';
 
 const Footer = () => {
   return (

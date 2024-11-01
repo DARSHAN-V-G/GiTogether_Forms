@@ -10,7 +10,7 @@ const Database = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:4000/event/view', {
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/event/view`, {
         name: username,
         password,
       });
