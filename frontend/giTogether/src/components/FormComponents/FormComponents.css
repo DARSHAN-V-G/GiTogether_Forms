@@ -16,3 +16,20 @@
   border: 1px solid rgb(190, 142, 158);
   position: relative; /* Maintains relative positioning */
 }
+
+.confirmtxt{
+  font-family: "Red Rose", serif;
+  font-optical-sizing: auto;
+  font-weight: 900;
+  font-style: normal;
+  color:#d91656;
+  font-size: 4rem;
+  text-align: center;
+  padding: 0;
+}
+
+@media(max-width:576px){
+  .confirmtxt{
+    font-size: 2.5rem;
+  }
+}
