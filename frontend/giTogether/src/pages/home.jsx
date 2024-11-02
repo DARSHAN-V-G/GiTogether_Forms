@@ -66,17 +66,19 @@ const HomePage = () => {
     <>
     <Header/>
     <div className="home-container">
-    {particles.map((_, index) => (
-        <span
-          key={index}
-          className="particle"
-          style={{
-            left: `${Math.random() * 100}%`,
-            animationDelay: `${Math.random() * 10}s`,
-            animationDuration: `${5 + Math.random() * 5}s`,
-          }}
-        ></span>
-      ))}
+    <div className="particles-container">
+          {particles.map((_, index) => (
+            <span
+              key={index}
+              className="particle"
+              style={{
+                left: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 10}s`,
+                animationDuration: `${5 + Math.random() * 5}s`,
+              }}
+            ></span>
+          ))}
+        </div>
     <h1 className="githubtxt">GITHUB CAMPUS CLUB PRESENTS</h1>
     <div className="txt">
       <h1 style={{ display: "inline-block",color:"#d91656" }} className="title">
@@ -88,12 +90,12 @@ const HomePage = () => {
       </h1>
     </div>
     <h1 className="tagline">A Fun Non Technical Event</h1>
-    <button className={'morebtn `${!buttonClicked ? "wobble" : ""}`'}
+    <button className={`morebtn ${!buttonClicked ? "wobble" : ""}`}
           onClick={handleMoreClick} href="#about">More About Git Together</button>
     <section id="about">
     {showAbout && <About/>}
     </section>
-    {showAbout && <a className={'joinbtn `${!joinbtnclicked?"wobble":""}` '} href="/register" onClick={handlejoinclick}>Join the Fun</a>}
+    {showAbout && <a className={`joinbtn ${!joinbtnclicked?"wobble":""} `} href="/register" onClick={handlejoinclick}>Join the Fun</a>}
     <section id="contact">
     {showAbout && <Footer/>}
     </section>

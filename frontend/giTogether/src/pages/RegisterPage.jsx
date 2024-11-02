@@ -1,4 +1,4 @@
-import React, { useState, useRef,useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import './RegisterPage.css';
 import NameInput from '../components/FormComponents/NameInput';
@@ -9,9 +9,9 @@ import SummaryComponent from '../components/FormComponents/RegisterComponent';
 const SuccessMessage = () => (
   <div className="overlay">
     <div className="success-message">
-      <p className="txt" style={{fontSize:"1.5rem",marginBottom:"20px"}}>Registration successful!</p>
-      <p className="txt" style={{fontSize:"1.2rem",marginBottom:"20px"}}>Don't forget to join the fun on 14th November!!</p>
-      <a className="txt" style={{fontSize:"1rem",marginBottom:"20px"}} href="https://chat.whatsapp.com/your-group-link" target="_blank" rel="noopener noreferrer">Join our WhatsApp group</a>
+      <p className="txt" style={{ fontSize: "1.5rem", marginBottom: "20px" }}>Registration successful!</p>
+      <p className="txt" style={{ fontSize: "1.2rem", marginBottom: "20px" }}>Don't forget to join the fun on 14th November!!</p>
+      <a className="txt" style={{ fontSize: "1rem", marginBottom: "20px" }} href="https://chat.whatsapp.com/your-group-link" target="_blank" rel="noopener noreferrer">Join our WhatsApp group</a>
       <a className="closebtn" href="/">Close</a>
     </div>
   </div>
@@ -21,8 +21,8 @@ const ErrorMessage = () => {
   return (
     <div className="overlay">
       <div className="success-message">
-        <p className="txt" style={{fontSize:"1.5rem",marginBottom:"20px"}}>Error Occured while registration.</p>
-        <p className="txt" style={{fontSize:"1.5rem",marginBottom:"20px"}}>Sorry for the inconvenience</p>
+        <p className="txt" style={{ fontSize: "1.5rem", marginBottom: "20px" }}>Error Occured while registration.</p>
+        <p className="txt" style={{ fontSize: "1.5rem", marginBottom: "20px" }}>Sorry for the inconvenience</p>
         <a className="closebtn" href="/register">Try Again</a>
       </div>
     </div>
@@ -33,8 +33,8 @@ const AlreadyRegistered = () => {
   return (
     <div className="overlay">
       <div className="success-message">
-        <p className="txt" style={{fontSize:"1.5rem",marginBottom:"20px"}}>You have Already registered</p>
-        <p className="txt" style={{fontSize:"1.5rem",marginBottom:"20px"}}>Haha! I got You</p>
+        <p className="txt" style={{ fontSize: "1.5rem", marginBottom: "20px" }}>You have Already registered</p>
+        <p className="txt" style={{ fontSize: "1.5rem", marginBottom: "20px" }}>Haha! I got You</p>
         <a className="closebtn" href="/">Get out</a>
       </div>
     </div>
@@ -63,31 +63,31 @@ const RegistrationForm = () => {
     "23n2": "CSE (AI&ML)",
     "23z2": "CSE - G1",
     "23z3": "CSE - G2",
-    "24n4" : "CSE (AI&ML)",
-    "24z4" : "CSE - G1"
+    "24n4": "CSE (AI&ML)",
+    "24z4": "CSE - G1"
   };
 
   const yearDict = {
-    "24n2": 2,
-    "24z2": 2,
-    "24z3": 2,
+    "24n2": 1,
+    "24z2": 1,
+    "24z3": 1,
     "23n2": 2,
     "23z2": 2,
     "23z3": 2,
-    "24n4" : 2,
-    "24z4" : 2,
+    "24n4": 2,
+    "24z4": 2,
   };
 
   const setDepartmentAndYear = () => {
     setFormData((prevData) => {
       const rollNoPrefix = prevData.roll_no.toLowerCase().slice(0, 4);
       let department = departmentDict[rollNoPrefix] || '';
-  
+
       if (rollNoPrefix === '24z4') {
         const fifthChar = prevData.roll_no.charAt(4);
         department = fifthChar === '3' ? "CSE - G1" : "CSE - G2";
       }
-  
+
       return {
         ...prevData,
         roll_no: prevData.roll_no.toUpperCase(),
@@ -120,7 +120,7 @@ const RegistrationForm = () => {
         phn_no: '',
         year: ''
       });
-      
+
     } catch (error) {
       if (error.response && error.response.data && error.response.data.error) {
         if (error.response.data.error.includes("duplicate key value violates unique constraint")) {
@@ -146,11 +146,21 @@ const RegistrationForm = () => {
     });
   }, []);
 
- const scrollToComponent = (ref) => {
+  const scrollToComponent = (ref) => {
     ref.current.scrollIntoView({
       behavior: 'smooth',
       block: 'center'
     });
+  };
+
+  const handleNextStep = (nextRef) => {
+    setStep((prevStep) => prevStep + 1);
+    scrollToComponent(nextRef);
+  };
+
+  const handlePrevStep = (prevRef) => {
+    setStep((prevStep) => prevStep - 1);
+    scrollToComponent(prevRef);
   };
 
   const nameInputRef = useRef(null);
@@ -166,8 +176,7 @@ const RegistrationForm = () => {
       {isRegistered && <AlreadyRegistered />}
 
       <div className="main-container">
-        
-      <div className="particles-container">
+        <div className="particles-container">
           {particles.map((_, index) => (
             <span
               key={index}
@@ -181,41 +190,52 @@ const RegistrationForm = () => {
           ))}
         </div>
         <div className="section" ref={nameInputRef}>
-          <NameInput 
-            name={formData.name} 
-            setName={(name) => setFormData({ ...formData, name })} 
-            nextStep={() => scrollToComponent(rollNoInputRef)}
-          />
+          {step === 0 && (
+            <NameInput
+              name={formData.name}
+              setName={(name) => setFormData({ ...formData, name })}
+              nextStep={() => handleNextStep(rollNoInputRef)}
+            />
+          )}
         </div>
-                
+
         <div className="section" ref={rollNoInputRef}>
-          <RollNoInput 
-            roll_no={formData.roll_no} 
-            setRollNo={(roll_no) => setFormData({ ...formData, roll_no })} 
-            prevStep={() => scrollToComponent(nameInputRef)} 
-            nextStep={() => {
-              setDepartmentAndYear();
-              scrollToComponent(phoneInputRef);
-            }}
-          />
+          {step === 1 && (
+            <RollNoInput
+              roll_no={formData.roll_no}
+              setRollNo={(roll_no) => setFormData({ ...formData, roll_no })}
+              prevStep={() => handlePrevStep(nameInputRef)}
+              nextStep={() => {
+                setDepartmentAndYear();
+                handleNextStep(phoneInputRef);
+              }}
+            />
+          )}
         </div>
 
         <div className="section" ref={phoneInputRef}>
-          <PhoneInput 
-            phn_no={formData.phn_no} 
-            setPhoneNo={(phn_no) => setFormData({ ...formData, phn_no })} 
-            prevStep={() => scrollToComponent(rollNoInputRef)} 
-            nextStep={() => scrollToComponent(summaryComponentRef)}
-          />
+          {step === 2 && (
+            <PhoneInput
+              phn_no={formData.phn_no}
+              setPhoneNo={(phn_no) => setFormData({ ...formData, phn_no })}
+              prevStep={() => handlePrevStep(rollNoInputRef)}
+              nextStep={() => handleNextStep(summaryComponentRef)}
+            />
+          )}
         </div>
 
         <div className="section" ref={summaryComponentRef}>
-          <SummaryComponent 
-            formData={formData} 
-            handleSubmit={handleSubmit} 
-            startFromFirst={() => scrollToComponent(nameInputRef)} 
-            loading={loading}
-          />
+          {step === 3 && (
+            <SummaryComponent
+              formData={formData}
+              handleSubmit={handleSubmit}
+              startFromFirst={() => {
+                handlePrevStep(nameInputRef)
+                setStep(0);
+              }}
+              loading={loading}
+            />
+          )}
         </div>
       </div>
     </>
