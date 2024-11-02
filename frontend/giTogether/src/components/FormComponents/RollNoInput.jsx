@@ -17,10 +17,10 @@ const RollNoInput = ({ roll_no, setRollNo, nextStep, prevStep }) => {
       setRollmsg("Enter Roll Number and click next!");
     }else
     if (rollNoPattern.test(roll_no.trim())) {
-      nextStep(); 
+      nextStep();
     } else {
-      setRollmsg('Enter a valid roll number !'); 
-     
+      setRollmsg('Enter a valid roll number !');
+
     }
   };
 
@@ -59,32 +59,32 @@ const RollNoInput = ({ roll_no, setRollNo, nextStep, prevStep }) => {
         }}
       />
       {rollmsg &&  <Alert severity="error" sx={{ mt: 2 }}>{rollmsg}</Alert>}
-      <p style={{ margin: '1rem 0', color: 'white', textAlign: 'center',fontSize:'14pt' }}>Enter Roll number to reveal your department .</p>
-      
+      <p style={{ margin: '1rem 0', color: 'white', textAlign: 'center',fontSize:'14pt',fontFamily:"'Red Rose', serif"}}>Enter Roll number to reveal your department .</p>
+
       <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-        <button 
-          onClick={prevStep} 
-          
+        <button
+          onClick={prevStep}
+
           style={{
-            border: '1px solid rgba(255, 255, 255, 0.5)', 
+            border: '1px solid rgba(255, 255, 255, 0.5)',
             backgroundColor: 'rgba(255, 255, 255, 0.1)',
-            color: 'rgb(190, 142, 158)', 
+            color: 'rgb(190, 142, 158)',
             padding: '0.5rem 1rem',
             borderRadius: '5px',
             cursor: 'pointer',
             width: '40%',
             marginLeft:'1rem',
-            transition: 'background-color 0.3s', 
+            transition: 'background-color 0.3s',
           }}
-          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.2)'} 
-          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)'} 
+          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.2)'}
+          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)'}
         >
           Back
         </button>
 
-        <button 
+        <button
           onClick={handleNext} // Use handleNext for validation
-          className="next-btn" 
+          className="next-btn"
           style={{
             border: '1px solid rgba(255, 255, 255, 0.5)', // 1px border with transparency
             backgroundColor: 'rgba(255, 255, 255, 0.1)', // Transparent glass background color

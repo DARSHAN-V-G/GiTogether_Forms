@@ -9,22 +9,22 @@ const NameInput = ({ name, setName, nextStep }) => {
     };
     const [nameError,setNameError] = useState('');
     const handleNext = (e) => {
-      e.preventDefault(); 
+      e.preventDefault();
       if (name.trim() !== '') {
-        nextStep(); 
+        nextStep();
       } else {
-        
+
         console.error('Name is required');
         setNameError('Enter Name !')
       }
     };
     return (
       <>
-      <p style={{position:'absolute', alignContent:'center',top:'30px'}} className='txt'>Let's Git Together</p>
+      <p style={{position:'absolute', alignContent:'center',top:'30px'}} className='registerationtxt'>Let's Git Together</p>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100%', position: 'relative', padding:'10px' }}>
       <TextField
-        id="name-input" 
-        label="Name" 
+        id="name-input"
+        label="Name"
         variant="outlined"
         value={name}
         onChange={handleChange}
@@ -53,23 +53,23 @@ const NameInput = ({ name, setName, nextStep }) => {
           },
         }}
       />
-       {nameError &&  <Alert severity="error" sx={{ mt: 2 }}>{nameError}</Alert>} 
-      <p style={{ margin: '1rem 0', color: 'white',textAlign:'center',fontSize:'14pt' }}>Don’t worry, we won’t misuse your info... much!</p>
-      
-      <button 
-        onClick={handleNext} 
+       {nameError &&  <Alert severity="error" sx={{ mt: 2 }}>{nameError}</Alert>}
+      <p style={{ margin: '1rem 0', color: 'white',textAlign:'center',fontSize:'14pt',fontFamily:"'Red Rose', serif" }}>Don’t worry, we won’t misuse your info... much!</p>
+
+      <button
+        onClick={handleNext}
         style={{
-          
-          border: '1px solid rgba(255, 255, 255, 0.5)', 
-          backgroundColor: 'rgba(255, 255, 255, 0.1)', 
-          color: 'rgb(190, 142, 158)', 
+
+          border: '1px solid rgba(255, 255, 255, 0.5)',
+          backgroundColor: 'rgba(255, 255, 255, 0.1)',
+          color: 'rgb(190, 142, 158)',
           padding: '0.5rem 1rem',
           borderRadius: '5px',
           cursor: 'pointer',
-          transition: 'background-color 0.3s', 
+          transition: 'background-color 0.3s',
         }}
-        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.2)'} 
-        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)'} 
+        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.2)'}
+        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)'}
       >
         Next
       </button>
@@ -77,6 +77,5 @@ const NameInput = ({ name, setName, nextStep }) => {
     </>
     );
   };
-  
+
   export default NameInput;
-  

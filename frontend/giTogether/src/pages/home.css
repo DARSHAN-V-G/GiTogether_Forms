@@ -54,6 +54,17 @@ body {
   padding: 0;
 }
 
+.registerationtxt{
+  font-family: "Red Rose", serif;
+  font-optical-sizing: auto;
+  font-weight: 900;
+  font-style: normal;
+  color:#d91656;
+  font-size: 4rem;
+  text-align: center;
+  padding: 0;
+}
+
 .githubtxt {
   font-family: "Red Rose", serif;
   font-optical-sizing: auto;
@@ -158,6 +169,10 @@ body {
 }
 
 @media (max-width: 576px) {
+
+  .registerationtxt{
+    font-size: 2rem;
+  }
   .txt {
     font-size: 1.5rem;
   }
