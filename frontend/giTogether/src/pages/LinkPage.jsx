@@ -22,7 +22,7 @@ const WhatsAppInvite = () => {
     setShowMeme(true);
     setLoading(true);
 
-    // Start playing the video and set a timer to show the link after 8 seconds
+    
     if (videoRef.current) {
       videoRef.current.play();
     }
