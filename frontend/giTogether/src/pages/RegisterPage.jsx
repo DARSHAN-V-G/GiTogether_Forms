@@ -11,7 +11,7 @@ const SuccessMessage = () => (
     <div className="success-message">
       <p className="txt" style={{ fontSize: "1.5rem", marginBottom: "20px" }}>Registration successful!</p>
       <p className="txt" style={{ fontSize: "1.2rem", marginBottom: "20px" }}>Don't forget to join the fun on 14th November!!</p>
-      <a className="txt" style={{ fontSize: "1rem", marginBottom: "20px" }} href="https://chat.whatsapp.com/your-group-link" target="_blank" rel="noopener noreferrer">Join our WhatsApp group</a>
+      <a className="txt" style={{ fontSize: "1rem", marginBottom: "20px" }} href="/link" target="_blank" rel="noopener noreferrer">Join our WhatsApp group</a>
       <a className="closebtn" href="/">Close</a>
     </div>
   </div>
