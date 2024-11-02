@@ -13,7 +13,7 @@ const SummaryComponent = ({ formData, handleSubmit,startFromFirst, loading }) =>
       <p style={{ margin: '1rem 0', color: 'white',textAlign:'center',fontSize:'18pt',fontFamily:"'Red Rose', serif" }}>If you need to change your details, Go back and Change</p>
       <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
       <button style={{borderRadius:'7px',margin:'5px'}} type="button" onClick={startFromFirst} className='submit-btn'>
-        go  back
+        Go  back
       </button>
       <button style={{borderRadius:'7px',margin:'5px'}} onClick={handleSubmit} className="submit-btn" disabled={loading}>
         {loading ? <LoadingSpinner/> : "Register"}
