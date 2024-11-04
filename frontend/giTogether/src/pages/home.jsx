@@ -21,9 +21,28 @@ const HomePage = () => {
 
   const tRef = useRef(null);
   useEffect(() => {
-    gsap.set('.githubtxt', {
-      opacity: 0,
-      scale: 0.5
+    const text = document.querySelector('.githubtxt');
+    const letters = text.textContent.split('');
+    text.textContent = '';
+
+    letters.forEach((letter, index) => {
+      const span = document.createElement('span');
+      if (letter === ' ') {
+        span.innerHTML = '&nbsp;&nbsp;';
+      } else {
+        span.textContent = letter;
+      }
+      span.style.display = 'inline-block';
+      span.style.opacity = 0; // Initially invisible
+      text.appendChild(span);
+      gsap.to(span, {
+        opacity: 1,
+        delay: index * 0.05,
+        duration: 0.1,
+        onStart: () => {
+          span.classList.add('pop-in');
+        },
+      });
     });
     gsap.set('.title',{
       opacity:0,
@@ -37,10 +56,8 @@ const HomePage = () => {
     const tl = gsap.timeline();
     tl.to('.githubtxt', {
       opacity: 1,
-      scale: 1,
-      duration: 0.5,
-      ease: "elastic.out(1, 0.6)",
-      delay: 0.5
+      duration:1.3,
+      scale:1,
     });
     tl.to('.title',{
       opacity:1,
