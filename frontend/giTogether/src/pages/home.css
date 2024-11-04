@@ -49,6 +49,26 @@ body {
   }
 }
 
+@keyframes popIn {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  80% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.pop-in {
+  display: inline-block;
+  animation: popIn 0.5s forwards;
+}
+
 .txt {
   font-family: "Red Rose", serif;
   font-optical-sizing: auto;
