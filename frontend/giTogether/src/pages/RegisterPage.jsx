@@ -6,6 +6,8 @@ import RollNoInput from '../components/FormComponents/RollNoInput';
 import PhoneInput from '../components/FormComponents/PhoneInput';
 import SummaryComponent from '../components/FormComponents/RegisterComponent';
 
+const backend_url = import.meta.env.VITE_BACKEND_URL;
+
 const SuccessMessage = () => (
   <div className="overlay">
     <div className="success-message">
@@ -104,7 +106,7 @@ const RegistrationForm = () => {
     try {
       setDepartmentAndYear();
 
-      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/event/register`, formData);
+      const response = await axios.post(`${backend_url}/event/register`, formData);
 
       if (response.status === 201) {
         setIsSuccess(true);
