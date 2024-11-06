@@ -54,7 +54,7 @@ const NameInput = ({ name, setName, nextStep }) => {
         }}
       />
        {nameError &&  <Alert severity="error" sx={{ mt: 2 }}>{nameError}</Alert>}
-      <p style={{ margin: '1rem 0', color: 'white',textAlign:'center',fontSize:'14pt',fontFamily:"'Red Rose', serif" }}>Don’t worry, we won’t misuse your info... much!</p>
+      <p style={{ margin: '1rem 0', color: 'white',textAlign:'center',fontSize:'14pt',fontFamily:"'Red Rose', serif" }}>We’ll try not to forget your name</p>
 
       <button
         onClick={handleNext}

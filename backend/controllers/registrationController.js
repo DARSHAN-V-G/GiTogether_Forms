@@ -1,7 +1,6 @@
 const supabase = require('../config/db_connect');
 const { Resend } = require('resend');
 require('dotenv').config();
-const nodemailer = require('nodemailer');
 
 const emailhandler = new Resend(process.env.RESEND_API)
 
@@ -42,21 +41,10 @@ const postData = async (req, res) => {
 
 // Function to send a confirmation email
 const sendConfirmationEmail = async (recipientEmail) => {
-  // Create transporter with your email service configuration
-    const transporter = nodemailer.createTransport({
-      service: 'gmail', // Use your email service provider
-      auth: {
-        user: `${process.env.EMAIL_ID}`, // Replace with your email
-        pass: `${process.env.EMAIL_PASSWORD}` // Use an app-specific password if using Gmail
-      }
-    });
-
-
-  // Define email options
   const mailOptions = {
-    from: `${process.env.EMAIL_ID}`, // Sender's email
+    from: process.env.EMAIL_ID, // Sender's email
     to: recipientEmail, // Recipient's email
-    subject: 'GiTogether Resgistration Confirmation', // Subject line
+    subject: 'GiTogether Registration Confirmation', // Subject line
     html: `<!doctype html>
 <html lang="en">
   <head>
@@ -363,7 +351,7 @@ const sendConfirmationEmail = async (recipientEmail) => {
           <div class="content">
 
             <!-- START CENTERED WHITE CONTAINER -->
-            <span class="preheader">HackToLearn Registration</span>
+            <span class="preheader">GiTogether Registration</span>
             <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="main">
 
               <!-- START MAIN CONTENT AREA -->
@@ -371,7 +359,7 @@ const sendConfirmationEmail = async (recipientEmail) => {
                 <td class="wrapper">
                   <p>Hey 👋</p>
                   <p>Thankyou for registering for GitTogether! We at GitHub Campus Club are super pumped to have you for our premier event.</p>
-                  <p>HackToLearn is an event where we bring students from different disciplines to teach, support and learn together. Expect hands-on mentorship, cool tools and enough moral support to get you through those late night coding sessions! </p>
+                  <p>GiTogether brings a fun mix of challenges! Starting with the GitHub Speed Run for quick navigation skills, then Box of Lies where teams bluff and guess quirky items, and ending with Marketing Silly Things where teams pitch funny, unconventional items. Each round promises creativity, teamwork, and lots of laughs!</p>
 
                   <p>Please join us on whatsapp using the below link :)</p>
                   <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
@@ -381,7 +369,7 @@ const sendConfirmationEmail = async (recipientEmail) => {
                           <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                             <tbody>
                               <tr>
-                                <td> <a href="https://chat.whatsapp.com/HT5EZqKb1Au9geBgLab5LM" target="_blank">Join us on Whatsapp!</a> </td>
+                                <td> <a href="https://chat.whatsapp.com/LEaZbPgq5DB8EkYXjXMUK6" target="_blank">Join us on Whatsapp!</a> </td>
                               </tr>
                             </tbody>
                           </table>
@@ -394,7 +382,7 @@ const sendConfirmationEmail = async (recipientEmail) => {
                   <p>See y'all there!</p>
                 </br>
                 </br>
-                  <p><b>Akash Shanmugaraj</b></br>Executive (Operations)</p>
+                  <p><b>Github Campus Club - PSGCT</b><</p>
                   
                   
                 </td>
@@ -431,15 +419,15 @@ const sendConfirmationEmail = async (recipientEmail) => {
 </html>`
   };
 
-  emailhandler.emails.send(mailOptions)
-  // Send the email
+  // Send the email using Resend
   try {
-    await transporter.sendMail(mailOptions);
+    await emailhandler.emails.send(mailOptions);
     console.log(`Confirmation email sent to ${recipientEmail}`);
   } catch (error) {
     console.error("Error sending confirmation email:", error.message);
   }
 };
+
 
 
 module.exports = {
