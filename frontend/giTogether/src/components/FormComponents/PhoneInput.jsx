@@ -70,7 +70,7 @@ const PhoneInput = ({ phn_no, setPhoneNo, prevStep, nextStep }) => {
       />
        {phnmsg &&  <Alert severity="error" sx={{ mt: 2 }}>{phnmsg}</Alert>}
 
-      <p style={{ margin: '1rem 0', color: 'white' ,fontSize:'14pt',fontFamily:"'Red Rose', serif"}}>So that we can slide into your dms tonight</p>
+      <p style={{ margin: '1rem 0', color: 'white' ,textAlign:'center',fontSize:'14pt',fontFamily:"'Red Rose', serif"}}>So that we can slide into your dms tonight</p>
 
       <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
         <button onClick={prevStep} style={{ ...buttonStyle,marginLeft:'1rem', }}>Back</button>
