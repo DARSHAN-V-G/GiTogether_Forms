@@ -10,7 +10,7 @@ const SummaryComponent = ({ formData, handleSubmit,startFromFirst, loading }) =>
      So You’re  <span style={{ color: '#d91656' }}>{formData.name}</span> from 
       <span style={{ color: '#d91656' }}> {formData.department} </span>
       <span style={{ color: '#d91656' }}>
-       ( {formData.year === '1' ? '1st' : '2nd'} year)
+       ( {formData.year === 1 ? '1st' : '2nd'} year)
       </span> with roll number <span style={{ color: '#d91656' }}>{formData.roll_no}</span>. If you need to Double-Check, just click Go Back.
     </span>
   );
