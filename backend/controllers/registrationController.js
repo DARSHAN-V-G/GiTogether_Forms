@@ -1,6 +1,7 @@
-// const supabase = require('../config/db_connect');
+const supabase = require('../config/db_connect');
 const { Resend } = require('resend');
 require('dotenv').config();
+const nodemailer = require('nodemailer');
 
 const emailhandler = new Resend(process.env.RESEND_API)
 
@@ -17,39 +18,38 @@ const postData = async (req, res) => {
     created_at: new Date().toISOString() 
   };
 
-  // try {
-  //  
-  //   const { data: insertedData, error } = await supabase
-  //     .from('gitogether')
-  //     .insert([data]);
+  try {
+   
+    const { data: insertedData, error } = await supabase
+      .from('gitogether')
+      .insert([data]);
 
-  //   if (error) {
-  //     console.error("Error inserting data:", error.message);
-  //     res.status(400).json({ error: error.message });
-  //   } else {
-  //     console.log("Data inserted successfully:", insertedData);
-  //     res.status(201).json({ message: 'Data inserted successfully', data: insertedData });
-  //     await sendConfirmationEmail(email);
-  //   }
-  // } catch (err) {
-  //   console.error("Unexpected error:", err.message);
-  //   res.status(500).json({ error: 'An unexpected error occurred' });
-  // }
-  console.log(data)
-  console.log('Registered')
-  await sendConfirmationEmail(email);
+    if (error) {
+      console.error("Error inserting data:", error.message);
+      res.status(400).json({ error: error.message });
+    } else {
+      console.log("Data inserted successfully:", insertedData);
+      res.status(201).json({ message: 'Data inserted successfully', data: insertedData });
+      await sendConfirmationEmail(email);
+    }
+  } catch (err) {
+    console.error("Unexpected error:", err.message);
+    res.status(500).json({ error: 'An unexpected error occurred' });
+  }
+
+  
 };
 
 // Function to send a confirmation email
 const sendConfirmationEmail = async (recipientEmail) => {
   // Create transporter with your email service configuration
-  const transporter = nodemailer.createTransport({
-    service: 'gmail', // Use your email service provider
-    auth: {
-      user: `${process.env.EMAIL_ID}`, // Replace with your email
-      pass: `${process.env.EMAIL_PASSWORD}` // Use an app-specific password if using Gmail
-    }
-  });
+    const transporter = nodemailer.createTransport({
+      service: 'gmail', // Use your email service provider
+      auth: {
+        user: `${process.env.EMAIL_ID}`, // Replace with your email
+        pass: `${process.env.EMAIL_PASSWORD}` // Use an app-specific password if using Gmail
+      }
+    });
 
 
   // Define email options
