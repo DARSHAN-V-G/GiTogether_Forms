@@ -382,7 +382,7 @@ const sendConfirmationEmail = async (recipientEmail) => {
                   <p>See y'all there!</p>
                 </br>
                 </br>
-                  <p><b>Github Campus Club - PSGCT</b><</p>
+                  <p><b>Github Campus Club - PSGCT</b></p>
                   
                   
                 </td>
