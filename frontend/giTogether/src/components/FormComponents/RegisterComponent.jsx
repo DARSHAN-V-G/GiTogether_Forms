@@ -5,8 +5,16 @@ const LoadingSpinner = () => {
   };
 
 const SummaryComponent = ({ formData, handleSubmit,startFromFirst, loading }) => {
-  const text = `For the confirmation: So You’re from ${formData.name} from ${formData.department} ( ${formData.year == '1' ? '1st' : '2nd'} year) with roll number ${formData.roll_no} If you need to Double-Check just click Go Back`
-  return (
+  const text = (
+    <span>
+     So You’re  <span style={{ color: '#d91656' }}>{formData.name}</span> from 
+      <span style={{ color: '#d91656' }}> {formData.department} </span>
+      <span style={{ color: '#d91656' }}>
+       ( {formData.year === '1' ? '1st' : '2nd'} year)
+      </span> with roll number <span style={{ color: '#d91656' }}>{formData.roll_no}</span>. If you need to Double-Check, just click Go Back.
+    </span>
+  );
+   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100%', position: 'relative', padding:'10px',width:"80%"}}>
       <h2 className="confirmtxt">Confirm Your Details</h2>
       <p style={{ margin: '1rem 0', color: 'white',textAlign:'center',fontSize:'18pt',fontFamily:"'Red Rose', serif"}}>{text}</p>
